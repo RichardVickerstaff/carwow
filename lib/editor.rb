@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-LINE_REGEX = %r/(?<command>\w) (?<m>\d)? (?<n>\d)?.*/
+LINE_REGEX = %r/(?<command>\w)\s?(?<m>\d)?\s?(?<n>\d)?.*/
 
 # This is the entrypoint of this application
 class Editor

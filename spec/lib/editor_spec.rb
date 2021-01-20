@@ -15,8 +15,26 @@ RSpec.describe Editor do
       expect { editor.run('examples/create.txt') }.to output("OOOO\nOOOO\nOOOO\n").to_stdout
     end
 
+    it "can output a 1 x 1 grid" do
+      expect { editor.run('examples/create_1x1.txt') }.to output("O").to_stdout
+    end
+
     it 'can handle more complex inputs' do
       expect { editor.run('examples/create_complex.txt') }.to output("OOOOO\nOOZZZ\nAWOOO\nOWOOO\nOWOOO\nOWOOO\n").to_stdout
+    end
+  end
+
+  describe '#line_parser' do
+    it 'can capture the command' do
+      expect(editor.line_parser('I 5 6')[:command]).to eq 'I'
+    end
+
+    it 'can capture the m' do
+      expect(editor.line_parser('I 5 6')[:m]).to eq 5
+    end
+
+    it 'can capture the n' do
+      expect(editor.line_parser('I 5 6')[:n]).to eq 6
     end
   end
 end

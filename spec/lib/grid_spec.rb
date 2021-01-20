@@ -15,4 +15,12 @@ RSpec.describe Grid do
       expect(described_class.new(2,2).print).to eq %w[OO OO]
     end
   end
+
+  describe '#colour_pixel' do
+    it 'can colour a pixel with a given colour' do
+      grid = described_class.new(2,3)
+      grid.colour_pixel(2, 3, 'W')
+      expect(grid.print).to eq %w[OOO OOW]
+    end
+  end
 end

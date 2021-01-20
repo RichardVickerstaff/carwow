@@ -2,6 +2,7 @@
 
 group :development, :test do
   gem 'bundler-audit'
+  gem 'pry'
   gem 'rake'
   gem 'rake-n-bake'
   gem 'rspec'

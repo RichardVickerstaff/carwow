@@ -4,10 +4,15 @@ GEM
     bundler-audit (0.7.0.1)
       bundler (>= 1.2.0, < 3)
       thor (>= 0.18, < 2)
+    coderay (1.1.3)
     diff-lcs (1.4.4)
+    method_source (1.0.0)
     parallel (1.20.1)
     parser (3.0.0.0)
       ast (~> 2.4.1)
+    pry (0.13.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     rainbow (3.0.0)
     rake (13.0.3)
     rake-n-bake (3.1.2)
@@ -53,6 +58,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler-audit
+  pry
   rake
   rake-n-bake
   rspec

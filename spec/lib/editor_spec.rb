@@ -22,6 +22,12 @@ RSpec.describe Editor do
     it 'can handle more complex inputs' do
       expect { editor.run('examples/create_complex.txt') }.to output("OOOOO\nOOZZZ\nAWOOO\nOWOOO\nOWOOO\nOWOOO\n").to_stdout
     end
+
+    describe 'can colour the pixels (X,Y) with a colour' do
+      it 'can colour the pixles with W' do
+        expect { editor.run('examples/colour_with_w.txt') }.to output("OWOO\nOOOO\nOOOO\n").to_stdout
+      end
+    end
   end
 
   describe '#line_parser' do

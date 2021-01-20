@@ -9,6 +9,10 @@ class Grid
     @grid.map(&:join)
   end
 
+  def colour_pixel(x_value, y_value, colour)
+    @grid[x_value - 1][y_value - 1] = colour
+  end
+
   private def create_grid(n_pixels, m_pixels)
     Array.new(n_pixels) do
       Array.new(m_pixels) { 'O' }

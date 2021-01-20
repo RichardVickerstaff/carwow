@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-LINE_REGEX = %r/(?<command>\w)\s?(?<m>\d)?\s?(?<n>\d)?.*/
+LINE_REGEX = %r/(?<command>\w)\s?(?<m>\d)?\s?(?<n>\d)?\s?(?<colour>\w)?/
 
 # This is the entrypoint of this application
 class Editor
@@ -10,6 +10,7 @@ class Editor
     image = nil
 
     File.open(file).each do |line|
+      parsed_line = line_parser(line)
       case line[0]
       when 'S'
         if image.nil?
@@ -18,10 +19,9 @@ class Editor
           puts image.print
         end
       when 'I'
-        parsed_line = line_parser(line)
         image = Grid.new(parsed_line[:n], parsed_line[:m])
       when 'L'
-        # TODO
+        image.colour_pixel(parsed_line[:n], parsed_line[:m], parsed_line[:colour])
       when 'V'
         # TODO
       when 'H'
@@ -36,7 +36,7 @@ class Editor
 
   def line_parser(line)
     match = line.match(LINE_REGEX)
-    { command: match[:command], m: match[:m]&.to_i, n: match[:n]&.to_i }
+    { command: match[:command], m: match[:m]&.to_i, n: match[:n]&.to_i, colour: match[:colour]}
   end
 
 end

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Editor
   def run(file)
-    return puts "please provide correct file" if file.nil? || !File.exists?(file)
+    return puts 'please provide correct file' if file.nil? || !File.exist?(file)
 
     image = nil
 
@@ -8,12 +10,12 @@ class Editor
       case line[0]
       when 'S'
         if image.nil?
-          puts "There is no image"
+          puts 'There is no image'
         else
           puts image
         end
       when 'I'
-        # TODO - Currently hardcoded for `I 4 3`
+        # TODO: - Currently hardcoded for `I 4 3`
         image = "OOOO\nOOOO\nOOOO\n"
       when 'L'
         # TODO

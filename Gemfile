@@ -1,4 +1,9 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
 
-ruby '~> 2.7'
-gem 'rspec'
+group :development, :test do
+  gem 'bundler-audit'
+  gem 'rake'
+  gem 'rake-n-bake'
+  gem 'rspec'
+  gem 'rubocop'
+end

@@ -15,12 +15,11 @@ class Editor
         if image.nil?
           puts 'There is no image'
         else
-          puts image
+          puts image.print
         end
       when 'I'
         parsed_line = line_parser(line)
-        # image = create_grid(parsed_line[:n], parsed_line[:m])
-        image = "OOOO\nOOOO\nOOOO\n"
+        image = Grid.new(parsed_line[:n], parsed_line[:m])
       when 'L'
         # TODO
       when 'V'
@@ -32,12 +31,6 @@ class Editor
       else
         puts 'unrecognised command :('
       end
-    end
-  end
-
-  def create_grid(n_pixels, m_pixels)
-    Array.new(n_pixels) do
-      Array.new(m_pixels) { 'O' }
     end
   end
 

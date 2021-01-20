@@ -16,7 +16,7 @@ RSpec.describe Editor do
     end
 
     it "can output a 1 x 1 grid" do
-      expect { editor.run('examples/create_1x1.txt') }.to output("O").to_stdout
+      expect { editor.run('examples/create_1x1.txt') }.to output("O\n").to_stdout
     end
 
     it 'can handle more complex inputs' do

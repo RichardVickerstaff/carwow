@@ -29,24 +29,4 @@ RSpec.describe Editor do
       end
     end
   end
-
-  describe '#line_parser' do
-    it 'can capture the command' do
-      expect(editor.line_parser('I 5 6')[:command]).to eq 'I'
-    end
-
-    it 'can capture the m' do
-      expect(editor.line_parser('I 5 6')[:m]).to eq 5
-    end
-
-    it 'can capture the n' do
-      expect(editor.line_parser('I 5 6')[:n]).to eq 6
-    end
-
-    describe 'when there is only a command' do
-      it 'can capture the command' do
-        expect(editor.line_parser('S')[:command]).to eq 'S'
-      end
-    end
-  end
 end

@@ -35,9 +35,7 @@ RSpec.describe Editor do
       end
 
       it 'can handle more complex inputs' do
-        expect do
-          editor.run('examples/create_complex.txt')
-        end.to output("OOOOO\nOOZZZ\nAWOOO\nOWOOO\nOWOOO\nOWOOO\n").to_stdout
+        expect { editor.run('examples/create_complex.txt') }.to output("OOOOO\nOOZZZ\nAWOOO\nOWOOO\nOWOOO\nOWOOO\n").to_stdout
       end
 
       describe 'can colour the pixels (X,Y) with a colour' do
@@ -49,6 +47,12 @@ RSpec.describe Editor do
       describe 'can clear any changes' do
         it 'clears coloured pixels' do
           expect { editor.run('examples/clear.txt') }.to output("OOOO\nOOOO\nOOOO\n").to_stdout
+        end
+      end
+
+      describe 'can colour vertical segments' do
+        it 'colours the pixels correctly' do
+          expect { editor.run('examples/vertical_segment.txt') }.to output("OOOOO\nOOOO\nAWOOO\nOWOOO\nOWOOO\nOWOOO\n").to_stdout
         end
       end
     end

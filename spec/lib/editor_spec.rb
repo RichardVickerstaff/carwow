@@ -15,12 +15,14 @@ RSpec.describe Editor do
       expect { editor.run('examples/create.txt') }.to output("OOOO\nOOOO\nOOOO\n").to_stdout
     end
 
-    it "can output a 1 x 1 grid" do
+    it 'can output a 1 x 1 grid' do
       expect { editor.run('examples/create_1x1.txt') }.to output("O\n").to_stdout
     end
 
     it 'can handle more complex inputs' do
-      expect { editor.run('examples/create_complex.txt') }.to output("OOOOO\nOOZZZ\nAWOOO\nOWOOO\nOWOOO\nOWOOO\n").to_stdout
+      expect do
+        editor.run('examples/create_complex.txt')
+      end.to output("OOOOO\nOOZZZ\nAWOOO\nOWOOO\nOWOOO\nOWOOO\n").to_stdout
     end
 
     describe 'can colour the pixels (X,Y) with a colour' do

@@ -4,7 +4,6 @@ require 'spec_helper'
 require 'input_processor'
 
 RSpec.describe InputProcessor do
-
   describe '#new' do
     context 'with a valid command' do
       it 'can capture the command' do

@@ -27,7 +27,7 @@ class Editor
         when 'H'
           # TODO
         when 'C'
-          # TODO
+          image.clear
         end
       rescue InputProcessor::OutOfBoundsError, InputProcessor::InvalidCommandError => e
         puts e.message

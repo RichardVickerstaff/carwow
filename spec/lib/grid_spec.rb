@@ -23,4 +23,12 @@ RSpec.describe Grid do
       expect(grid.print).to eq %w[OOO OOW]
     end
   end
+
+  describe '#clear' do
+    it 'resets the grid back to all O' do
+      grid = described_class.new(2, 3)
+      grid.colour_pixel(2, 3, 'W')
+      expect { grid.clear }.to change { grid.print }.from(%w[OOO OOW]).to(%w[OOO OOO])
+    end
+  end
 end

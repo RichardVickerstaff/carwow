@@ -45,6 +45,12 @@ RSpec.describe Editor do
           expect { editor.run('examples/colour_with_w.txt') }.to output("OWOO\nOOOO\nOOOO\n").to_stdout
         end
       end
+
+      describe 'can clear any changes' do
+        it 'clears coloured pixels' do
+          expect { editor.run('examples/clear.txt') }.to output("OOOO\nOOOO\nOOOO\n").to_stdout
+        end
+      end
     end
   end
 end

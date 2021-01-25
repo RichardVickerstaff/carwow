@@ -2,7 +2,7 @@
 
 # class to process the user input
 class InputProcessor
-  COMMAND_REQUIRES_X_AND_Y = %w[I L V H].freeze
+  COMMAND_REQUIRES_X_AND_Y = %w[I L].freeze
   VALID_COMMANDS = %w[I C L V H S].freeze
 
   # class for out of bounds error
@@ -11,7 +11,7 @@ class InputProcessor
   # class for invalid command error
   class InvalidCommandError < StandardError; end
 
-  attr_reader :command, :x, :y, :colour
+  attr_reader :command, :x, :y, :colour, :segment_start, :segment_end, :segment_position
 
   def initialize(line)
     @line = line
@@ -24,9 +24,17 @@ class InputProcessor
 
   def line_parser
     @command, *args = @line.split
-    @y = args.fetch(0, nil)&.to_i
-    @x = args.fetch(1, nil)&.to_i
-    @colour = args.fetch(2, nil)
+    if COMMAND_REQUIRES_X_AND_Y.include? @command
+      @y = args[0].to_i
+      @x = args[1].to_i
+    end
+
+    if %w[H V].include? @command
+      @segment_position = args[0].to_i
+      @segment_start = args[1].to_i
+      @segment_end = args[2].to_i
+    end
+    @colour = args.fetch(-1, nil)
   end
 
   def validate_x_and_y!

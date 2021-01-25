@@ -31,4 +31,11 @@ RSpec.describe Grid do
       expect { grid.clear }.to change { grid.print }.from(%w[OOO OOW]).to(%w[OOO OOO])
     end
   end
+
+  describe '#clear' do
+    it 'resets the grid back to all O' do
+      grid = described_class.new(3, 3)
+      expect { grid.vertical_segment(segment_position: 2, segment_start: 1, segment_end: 2, colour: 'Z') }.to change { grid.print }.from(%w[OOO OOO OOO]).to(%w[OZO OZO OOO])
+    end
+  end
 end

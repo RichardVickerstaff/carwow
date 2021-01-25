@@ -32,11 +32,11 @@ RSpec.describe InputProcessor do
       end
 
       it 'raises an error if there is no y for a command that needs it' do
-        expect { described_class.new('V 5') }.to  raise_error(InputProcessor::OutOfBoundsError)
+        expect { described_class.new('I 5') }.to  raise_error(InputProcessor::OutOfBoundsError)
       end
 
       it 'raises an error if there is no x for a command that needs it' do
-        expect { described_class.new('V') }.to  raise_error(InputProcessor::OutOfBoundsError)
+        expect { described_class.new('I') }.to  raise_error(InputProcessor::OutOfBoundsError)
       end
     end
 
@@ -57,6 +57,17 @@ RSpec.describe InputProcessor do
         input = described_class.new('I 110 120')
         expect(input.x).to eq 120
         expect(input.y).to eq 110
+      end
+
+      it 'can capture the values for a vertical segment command' do
+        input = described_class.new('V 2 3 6 W')
+        expect(input.command).to eq 'V'
+        expect(input.x).to eq nil
+        expect(input.y).to eq nil
+        expect(input.segment_position).to eq 2
+        expect(input.segment_start).to eq 3
+        expect(input.segment_end).to eq 6
+        expect(input.colour).to eq 'W'
       end
 
       describe 'when there is only a command' do

@@ -23,9 +23,19 @@ class Editor
         when 'L'
           image.colour_pixel(input.x, input.y, input.colour)
         when 'V'
-          # TODO
+          image.vertical_segment(
+            segment_position: input.segment_position,
+            segment_start: input.segment_start,
+            segment_end: input.segment_end,
+            colour: input.colour
+          )
         when 'H'
-          # TODO
+          image.horizontal_segment(
+            segment_position: input.segment_position,
+            segment_start: input.segment_start,
+            segment_end: input.segment_end,
+            colour: input.colour
+          )
         when 'C'
           image.clear
         end

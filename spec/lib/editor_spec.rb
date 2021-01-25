@@ -52,7 +52,7 @@ RSpec.describe Editor do
 
       describe 'can colour vertical segments' do
         it 'colours the pixels correctly' do
-          expect { editor.run('examples/vertical_segment.txt') }.to output("OOOOO\nOOOO\nAWOOO\nOWOOO\nOWOOO\nOWOOO\n").to_stdout
+          expect { editor.run('examples/vertical_segment.txt') }.to output("OOOOO\nOOOOO\nOWOOO\nOWOOO\nOWOOO\nOWOOO\n").to_stdout
         end
       end
     end

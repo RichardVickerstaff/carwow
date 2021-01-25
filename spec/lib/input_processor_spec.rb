@@ -26,6 +26,14 @@ RSpec.describe InputProcessor do
       it 'raises an error when there is an invalid command' do
         expect { described_class.new('P 5 0') }.to  raise_error(InputProcessor::InvalidCommandError)
       end
+
+      it 'raises an error if there is no y for a command that needs it' do
+        expect { described_class.new('V 5') }.to  raise_error(InputProcessor::OutOfBoundsError)
+      end
+
+      it 'raises an error if there is no x for a command that needs it' do
+        expect { described_class.new('V') }.to  raise_error(InputProcessor::OutOfBoundsError)
+      end
     end
 
     context 'with a valid command' do

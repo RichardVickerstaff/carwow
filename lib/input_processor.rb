@@ -3,6 +3,7 @@
 # class to process the user input
 class InputProcessor
   LINE_REGEX = /(?<command>\w)\s?(?<m>\d+)?\s?(?<n>\d+)?\s?(?<colour>\w)?/.freeze
+  COMMAND_REQUIRES_X_AND_Y = %w[I L V H].freeze
   VALID_COMMANDS = %w[I C L V H S].freeze
 
   # class for out of bounds error
@@ -48,9 +49,16 @@ class InputProcessor
   end
 
   def validate_x_and_y!
-    if @x && @y
+      return unless COMMAND_REQUIRES_X_AND_Y.include?(@command)
+
+      validate_presence_of_x_and_y!
       raise OutOfBoundsError.new('x', @x) if @x > 250 || @x < 1
       raise OutOfBoundsError.new('y', @y) if @y > 250 || @y < 1
+  end
+
+  def validate_presence_of_x_and_y!
+    { x: @x, y: @y }.each do |key, _value|
+      raise OutOfBoundsError.new(key.to_s, 0) unless @x.is_a?(Integer)
     end
   end
 

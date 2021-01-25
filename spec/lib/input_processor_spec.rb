@@ -23,6 +23,10 @@ RSpec.describe InputProcessor do
         expect { described_class.new('I 5 0') }.to  raise_error(InputProcessor::OutOfBoundsError)
       end
 
+      it 'raises an error when an y value is negative' do
+        expect { described_class.new('I 5 -1') }.to  raise_error("The x value -1 is out of range, it should be between 1 and 252")
+      end
+
       it 'raises an error when there is an invalid command' do
         expect { described_class.new('P 5 0') }.to  raise_error(InputProcessor::InvalidCommandError)
       end

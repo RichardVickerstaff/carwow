@@ -28,10 +28,8 @@ class Editor
           # TODO
         when 'C'
           # TODO
-        else
-          puts 'unrecognised command :('
         end
-      rescue InputProcessor::OutOfBoundsError => e
+      rescue InputProcessor::OutOfBoundsError, InputProcessor::InvalidCommandError => e
         puts e.message
         break
       end

@@ -8,8 +8,16 @@ RSpec.describe Editor do
 
   describe '#run' do
     context 'with an invalid input' do
-      it 'informs the user of the error' do
-        expect { editor.run('examples/invalid.txt') }.to output("The y value 300 is out of range, it should be between 1 and 252\n").to_stdout
+      context 'invalid x or y' do
+        it 'informs the user of the error' do
+          expect { editor.run('examples/invalid.txt') }.to output("The y value 300 is out of range, it should be between 1 and 252\n").to_stdout
+        end
+      end
+
+      context 'invalid command' do
+        it 'informs the user of the error' do
+          expect { editor.run('examples/invalid_command.txt') }.to output("Command P must be one of [\"I\", \"C\", \"L\", \"V\", \"H\", \"S\"]\n").to_stdout
+        end
       end
     end
 

@@ -22,6 +22,10 @@ RSpec.describe InputProcessor do
       it 'raises an error when an y value is too small' do
         expect { described_class.new('I 5 0') }.to  raise_error(InputProcessor::OutOfBoundsError)
       end
+
+      it 'raises an error when there is an invalid command' do
+        expect { described_class.new('P 5 0') }.to  raise_error(InputProcessor::InvalidCommandError)
+      end
     end
 
     context 'with a valid command' do

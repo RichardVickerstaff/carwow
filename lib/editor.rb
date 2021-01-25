@@ -8,26 +8,32 @@ class Editor
     image = nil
 
     File.open(file).each do |line|
-      input = InputProcessor.new(line)
-      case input.command
-      when 'S'
-        if image.nil?
-          puts 'There is no image'
+      begin
+        input = InputProcessor.new(line)
+
+        case input.command
+        when 'S'
+          if image.nil?
+            puts 'There is no image'
+          else
+            puts image.print
+          end
+        when 'I'
+          image = Grid.new(input.x, input.y)
+        when 'L'
+          image.colour_pixel(input.x, input.y, input.colour)
+        when 'V'
+          # TODO
+        when 'H'
+          # TODO
+        when 'C'
+          # TODO
         else
-          puts image.print
+          puts 'unrecognised command :('
         end
-      when 'I'
-        image = Grid.new(input.x, input.y)
-      when 'L'
-        image.colour_pixel(input.x, input.y, input.colour)
-      when 'V'
-        # TODO
-      when 'H'
-        # TODO
-      when 'C'
-        # TODO
-      else
-        puts 'unrecognised command :('
+      rescue InputProcessor::OutOfBoundsError => e
+        puts e.message
+        break
       end
     end
   end

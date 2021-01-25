@@ -25,15 +25,13 @@ class Editor
         when 'V'
           image.vertical_segment(
             segment_position: input.segment_position,
-            segment_start: input.segment_start,
-            segment_end: input.segment_end,
+            segment_range: input.segment_range,
             colour: input.colour
           )
         when 'H'
           image.horizontal_segment(
             segment_position: input.segment_position,
-            segment_start: input.segment_start,
-            segment_end: input.segment_end,
+            segment_range: input.segment_range,
             colour: input.colour
           )
         when 'C'

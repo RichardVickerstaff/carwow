@@ -11,7 +11,7 @@ class InputProcessor
   # class for invalid command error
   class InvalidCommandError < StandardError; end
 
-  attr_reader :command, :x, :y, :colour, :segment_start, :segment_end, :segment_position
+  attr_reader :command, :x, :y, :colour, :segment_range, :segment_position
 
   def initialize(line)
     @line = line
@@ -29,10 +29,14 @@ class InputProcessor
       @x = args[1].to_i
     end
 
-    if %w[H V].include? @command
+    if @command == 'V'
       @segment_position = args[0].to_i
-      @segment_start = args[1].to_i
-      @segment_end = args[2].to_i
+      @segment_range = args[1].to_i..args[2].to_i
+    end
+
+    if @command == 'H'
+      @segment_position = args[2].to_i
+      @segment_range = args[0].to_i..args[1].to_i
     end
     @colour = args.fetch(-1, nil)
   end

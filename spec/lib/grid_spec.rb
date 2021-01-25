@@ -32,10 +32,17 @@ RSpec.describe Grid do
     end
   end
 
-  describe '#clear' do
+  describe '#vertical_segment' do
     it 'resets the grid back to all O' do
       grid = described_class.new(3, 3)
-      expect { grid.vertical_segment(segment_position: 2, segment_start: 1, segment_end: 2, colour: 'Z') }.to change { grid.print }.from(%w[OOO OOO OOO]).to(%w[OZO OZO OOO])
+      expect { grid.vertical_segment(segment_position: 2, segment_range: 1..2, colour: 'Z') }.to change { grid.print }.from(%w[OOO OOO OOO]).to(%w[OZO OZO OOO])
+    end
+  end
+
+  describe '#horizontal_segment' do
+    it 'resets the grid back to all O' do
+      grid = described_class.new(3, 3)
+      expect { grid.horizontal_segment(segment_position: 2, segment_range: 1..2, colour: 'Z') }.to change { grid.print }.from(%w[OOO OOO OOO]).to(%w[OOO ZZO OOO])
     end
   end
 end

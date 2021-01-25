@@ -65,8 +65,17 @@ RSpec.describe InputProcessor do
         expect(input.x).to eq nil
         expect(input.y).to eq nil
         expect(input.segment_position).to eq 2
-        expect(input.segment_start).to eq 3
-        expect(input.segment_end).to eq 6
+        expect(input.segment_range).to eq 3..6
+        expect(input.colour).to eq 'W'
+      end
+
+      it 'can capture the values for a horizontal segment command' do
+        input = described_class.new('H 2 3 6 W')
+        expect(input.command).to eq 'H'
+        expect(input.x).to eq nil
+        expect(input.y).to eq nil
+        expect(input.segment_position).to eq 6
+        expect(input.segment_range).to eq 2..3
         expect(input.colour).to eq 'W'
       end
 

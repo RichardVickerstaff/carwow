@@ -19,10 +19,14 @@ class Grid
     @grid = create_grid
   end
 
-  def vertical_segment(segment_position:, segment_start:, segment_end:, colour:)
-    x_range = (segment_start..segment_end).to_a
+  def vertical_segment(segment_position:, segment_range:, colour:)
     y = segment_position
-    x_range.each { |x| colour_pixel(x, y, colour)}
+    segment_range.to_a.each { |x| colour_pixel(x, y, colour) }
+  end
+
+  def horizontal_segment(segment_position:, segment_range:, colour:)
+    x = segment_position
+    segment_range.to_a.each { |y| colour_pixel(x, y, colour) }
   end
 
   private def create_grid
